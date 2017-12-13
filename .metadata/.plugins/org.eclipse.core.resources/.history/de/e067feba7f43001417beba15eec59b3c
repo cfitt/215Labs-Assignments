@@ -1,0 +1,11 @@
+
+package lab5.linkedlists;
+
+public interface LinkedNode {
+	
+	//LinkedNode should contain getter/setter methods for the String data stored and the “next” node
+	public LinkedNode setNextNode(LinkedNode node);
+	public void setString(String input);
+	public String getString();
+	public LinkedNode getNextNode();
+}

@@ -1,0 +1,36 @@
+package Echo;
+
+import java.net.*;
+import java.io.*;
+import java.io.BufferedReader;
+	
+public class Echo {
+	public static void main(String[] args) throws Exception {
+		String stringULR = args[0];
+		try {//Find a WebPage from the ULR given at Argument Line
+			URL inputURL = new URL(stringULR);
+			BufferedReader in = new BufferedReader(
+					new InputStreamReader(inputURL.openStream()));
+			String elmentsHTML;
+			while ((elmentsHTML = in.readLine()) != null)
+				System.out.println(elmentsHTML);
+			in.close();
+		}	
+		catch(MalformedURLException e) {//There is No WebPage given 
+			System.out.println("Invalid URL in Arguments Dude... ");
+		}
+		try {//Find a Text File from the local Address given
+			String stringFile = args[0];
+			BufferedReader in2 = 
+					new BufferedReader(new FileReader(stringFile));
+			String stringsinFile = null;
+			while ((stringsinFile = in2.readLine()) != null)
+				System.out.println(stringsinFile);
+			in2.close();
+		}
+		catch(FileNotFoundException e) {//Text File from address was not found
+			System.out.println("No File in Arguments Dude... "); 
+		}
+	}
+}
+

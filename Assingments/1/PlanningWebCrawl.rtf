@@ -1,0 +1,245 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf210
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww13640\viewh14240\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640
+
+\f0\fs24 \cf0 Web Crawler:\
+\
+Actual Assignment: Create a Web crawler with the requirements listed on the req page.\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+\cf0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640
+\cf0 \
+Plan Below:\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+\cf0 Classes Required:\
+	WebElement interface\
+	WebCrawler class, The Working Class\
+	WebPage class, impl WebElement\
+	WebFile class, impl WebElement\
+	WebImage class, impl WebElement\
+	DownloadRepository interface\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640
+\cf0 	Repository, impl DownloadRepository (Singleton class)\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+\cf0 \
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+WebElement (interface):\
+	The point of the web crawler is to save a websites contents, so:\
+\
+	void saver(String pathToSite);\
+		Every WebCrawler will need a path to where it\'92s crawling,\
+		this is where the interface will operate.\
+		Ask Blair, Still unsure about interfaces and abstract classes\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+\cf0 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+\cf0 \
+WebCrawler:\
+	Main Driver In Program - Take in only 3 arguments from command line\
+		<URL>, <Depth of crawl>, <Save Directory Loc>\
+\
+Uses of each given Param:	\
+	<ULR> -> save to string -> Param for, WebPage(StringOfULR)\
+	<Depth> -> save to int -> Objective, crawl into pages of set depth\
+				Find uses when developing:\
+				Max crawl depth first?\
+				recursion?\
+				Loop with <Depth> as Param?\
+	<Dir Loc> -> save to string ->\
+		 DownloadRepository.getInstance().download(StringOfDir);\
+				I Do Not Fully Understand how to do this\
+				Go to: Office Hours/Tutoring\
+				update (9.28.14)\
+					Tutoring is shit, he tried to do the project for me.\
+					Office Hours are super helpful, Mark in Calendar\
+		\
+		From what I understand is in DownloadRepository notes\
+		\
+		After uses of Param have been established, affirm user and end\
+\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+WebPage (imp WebElement):\
+	Constructor()\
+		Pass an address and save said address\
+\
+	Crawl(<Depth>)\
+		Multiple ways I could do this\
+		after time thinking about it, I feel the simplest method would be \
+			to increment/decrement depth \
+		1) Create ULR object and data structures needed\
+			Data Structure choice is vast for this project\
+			play around with a few to find the best\
+				so far: ArrayList, Map, or Tree of some sort\
+		2) Check if depth is < 0\
+			if so, you\'92re done, return page\
+		3) Save string of ULR passed in, to ULR object\
+		4) BufferedReader that poop\
+			find we elements\
+			Sort them\
+		5) Check if reading is empty, then end?\
+		6) decrement depth\
+\
+		What does this still need to be functional?\
+			A way to \'93parse\'94 what the BufferedReader gives?\
+				Use JSoup?\
+					JSoup is OK, but keep looking\'85\
+				Make a Parser?\
+					More Control of what\'92s being passed.\
+					Make a buffedParser(), It can\'92t be that hard\
+		Getters()\
+			Still undecided on Data Structure I will use.\
+			Once decided, just return the Data together							Easy.\
+		Sorter()\
+			part of step 4 above\
+			A way to sort through to see if an type \
+					of element as been read\
+			pages will require you to enter and download within\
+				same method of reading in, \
+				just with <Depth> involved\
+			basic alg:\
+			if(WebPage)\
+				add Web page to it\'92s own Data for that type\
+			if(WebImage)\
+				add Image to it\'92s own Data\
+			if(WebFile)\
+				add File to it\'92s own Data?\
+				or file contents?\
+\
+		After all this, this needs to be saved to the download repository\
+			Still unsure how to do that.\
+\
+	Main Problems:\
+		Cannot find a way to use Saver from interface WebElements.\
+		Saver needs a string of a ULR to save, and a page needs to saved\
+			within separate depths of it\'92s own pages.\
+		Maybe rethink interface?\
+		Is this where I would use an Abstract Class?\
+		\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+WebFile (imp WebElement):\
+\
+	Constructor() to pass string of ULR\
+	\
+	saver(String pathToSite)\
+		1) Create ULR object and data structure(ArrayList, Map, or Tree of some sort)			2) Save string of ULR passed in, to ULR object\
+		3) Save Files within a new created Directory\
+	http://docs.oracle.com/javase/7/docs/api/java/io/File.html#mkdir()\
+			Should I do this in the Repository class?\
+			How do I name\'85 anything here?\
+				File Name?\
+				Directory Naming?\
+\
+		4) InputStream/OutputStream to read write file\
+			4.5) Remember to close reader and writer\
+		5) Save to repository?\
+			Or would this step be done in Webpage class?\
+			Still unclear\'85 poop\
+	\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+\cf0 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+\cf0 \
+WebImage (imp WebElement):\
+	Constructor() to pass string of ULR\
+	\
+	saver(String pathToSite)\
+		1) Create ULR object and data structure(ArrayList, Map, or Tree of some sort)			2) Save string of ULR passed in, to ULR object\
+		3) Save Files within a new created Directory\
+	http://docs.oracle.com/javase/7/docs/api/java/io/File.html#mkdir()\
+			Find a crafty way to name dirs and local files\
+		\
+		4) InputStream/OutputStream to read in image\
+			Images are different than files\
+		4.5) Remember to close reader and writer\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+\cf0 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+\cf0 \
+DownloadRepository (interface):\
+	\
+	Most of this is just lifted from the lesson in class.\
+\
+	public void addWebElements(WebPage sentWebPage);\
+	\
+	public void download(String savePath);\
+\
+\
+Repository:\
+\
+NEED\
+	private static DownloadRepository instance;\
+	& Data Structures to save stuff in\
+\
+Ask Blair About:\
+	Constructor()\{\
+		Make containers for data if none has been created\
+	\}\
+		\
+\
+	public static DownloadRepository getInstance() \{\
+		if (instance != null)\
+			return instance;\
+		instance = new DownloadRepository();\
+	\}\
+\
+//Assuming data structure is picked\
+	public void addWebElements(WebPage webPage) \{\
+		for (WebFile webFile : webPage.getterForFiles())\
+			files.add(webFile);\
+		for (WebImage webImage : webPage.getterForImages())\
+			images.add(webImage);\
+	\}\
+\
+	public void download(String savePath) \{\
+		for (WebFile webFile : files)\
+			webFile.saver(savePath);\
+		for (WebImage webImage : images)\
+			webImage.saver(savePath);\
+	\}\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+\cf0 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+\cf0 \
+Ok\'85 That\'92s a ton of info above\'85 what are you gonna do about it?\
+\
+	1) Research/Make Parser and Sorter\
+	2) Go to Blair\'92s Office Hours to solidify information\
+	3) Attain knowledge about:\
+		Creating files in Java\
+		Lab 6:\
+			Java IO in/outputstream\
+			BufferedReader\
+			ASK QUESTIONS IN LAB\
+		Data Structure choice for Web Crawlers\
+		DOWNLOAD REPOSITORY & SINGLETON\
+		Methods to parse web pages\
+\
+LETS DO THIS!\
+\
+\
+	\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+	\
+				\
+\
+}

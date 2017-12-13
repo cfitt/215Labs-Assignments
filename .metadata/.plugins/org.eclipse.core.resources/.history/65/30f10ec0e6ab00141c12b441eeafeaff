@@ -1,0 +1,67 @@
+package cs.clemson.proj1;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.nio.charset.Charset;
+
+
+public class Assemble {
+	
+	int PRINT=1;
+	int PRINTLN=2;
+	int ICONST_M1=2;
+	int ICONST_0=3;
+	int ICONST_1=4;
+	int ICONST_2=5;
+	int ICONST_3=6;
+	int ICONST_4=7;
+	int ICONST_5=8;
+	int BIPUSH=16;
+	int ILOAD=21;
+	int ILOAD_0=26;
+	int ILOAD_1=27;
+	int ILOAD_2=28;
+	int ILOAD_3=29;
+
+	int ISTORE_0=59;
+	int ISTORE_1=60;
+	int ISTORE_2=61;
+	int ISTORE_3=62;
+	int ISTORE=54;
+	int POP=87;
+	int SWAP=95;
+	int DUP=89;
+
+	int IADD=96;
+	int ISUB=100;
+	int IMUL=104;
+	int IDIV=108;
+	int IREM=112;
+	int INEG=116;
+	int IINC=132;
+	int IFGE=156;
+	int IFGT=157;
+	int IFLE=158;
+	int IFLT=155;
+	int IFNE=154;
+	int GOTO=167;
+	int JSR=168;
+	int RET=169;
+	int INVOKEVIRTUAL=182;
+	int RETURN = 177;
+
+	public static void main(String[] args) {
+		
+	}
+
+	public Assemble () throws FileNotFoundException{
+		URL url = getClass().getResource("filename.txt");
+		File file = new File(url.getPath());
+		InputStream input = new FileInputStream(file);
+		if (input.equals())
+	}
+}

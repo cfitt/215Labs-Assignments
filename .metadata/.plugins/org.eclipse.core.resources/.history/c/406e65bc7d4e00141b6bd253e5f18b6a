@@ -1,0 +1,41 @@
+package cs.cpsc215.lab7;
+
+public class BoundedSetOfStringChecker implements BoundedSetOfStrings {
+
+	@Override
+	public int getBound(String a) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getSize() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void addElement(String a) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void removeElement(String a) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public String removeAny() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean isIn(String a) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

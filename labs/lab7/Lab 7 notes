@@ -1,0 +1,155 @@
+Objectives:
+	3 part lab:
+		Java Interfaces
+		pre/post conditions
+		checking wrapper
+
+//----------------------------------------------------------------------------------------------------------------
+
+	1) Interface:
+		Pre-face: For the first component of the lab, you will design an interface and a corresponding
+			implementation to represent a bounded set of Strings. Here “set” refers to the
+			mathematical abstraction and “bounded” indicates that there is an upper-bound on the 
+			number of Strings that a set instance may contain. Your solution must satisfy the 
+			following requirements.
+
+			
+		Purpose: 
+			Implementation to represent a bounded set of strings
+
+		Your interface must provide the following methods: 
+		Interface "BoundedSetOfStrings"
+			getBound()
+			getSize()
+			addElement()
+			removeElement()
+			removeAny()
+			isIn()
+		Implementation Class: BoundedSetOfStringsImp
+			Other Notations: 
+			- Must provide a constructor that accepts the set’s upper-bound as 
+			argument and assigns an empty value to the new set instance.
+			- Hint: Investigate the String.equals() function in the Java API. 
+				An interesting exam question might ask you to explain the 
+				difference between the expression: 
+					(s1==s2) and s1.equals(s2).
+ 			- Hint: A mathematical set can never contain duplicate elements.
+
+
+			getBound(): will return the upper-bound on the size of the set instance.
+
+			getSize(): will return the current size of the set instance.
+
+			addElement(): will accept a String as argument and add the String to the set. 
+				Assumptions: 
+					- addElement() will always be called with an argument 
+					that is not contained within the set. 
+					- addElement() will not be called if the number of elements contained 
+					in the set is equal to the set’s upper-bound.
+
+			removeElement(): will accept a String as argument and remove the String from the set.
+				Assumption: 
+					-removeElement() will always be called with an argument that 
+					is contained within the set.
+
+			removeAny():  will remove and return some String from the set;
+					(the particular String returned doesn’t matter.)
+			Assumption: removeAny() will never be invoked on an empty set.
+
+			isIn():  will accept a String as argument.
+				Return a boolean value indicating whether the argument is contained within the set.
+
+//----------------------------------------------------------------------------------------------------------------
+
+	2) Pre/Post Conditions:
+		Pre-Face: For this portion of the lab, you are required to introduce 
+				comments within the BoundedSetOfString interface. 
+				The comments should clearly identify the pre-condition of each method. 
+				In some cases, there may be no pre-condition; in this case, simply write “none”.
+			Pre-condition:  a requirement that must be satisfied by a caller before a method 
+					may be executed, else the method may fail. 
+			Example: In a stack, the method pop(), the pre-condition normally requires 
+				 that the Stack be non-empty.
+
+
+		Purpose: 
+			Insert Pre-Conditions for each method.
+			
+			getBound(): 
+				Function: will return the upper-bound on the size of the set instance.
+				Assumptions: None
+				Pre-Condition:
+					none, if set is empty, nothing is returned
+
+			getSize(): 
+				Function: return the current size of the set instance.
+				Assumptions: None
+				Pre-Condition:
+					none, if set is empty, 0 is returned
+
+			addElement(String): 
+				Function: accept String and add the String to the set. 
+				Assumptions: 
+					- addElement() will always be called with an argument 
+					that is not contained within the set. 
+					- addElement() will not be called if the number of elements contained 
+					in the set is equal to the set’s upper-bound.
+				Pre-Condition:
+					Set is not empty
+					Set contains the element given
+					Upper-Bound is not exceeded when adding
+
+			removeElement(String): 
+				Funtion: accept a String and remove the String from the set.
+				Assumption: 
+					-removeElement() will always be called with an argument that 
+					is contained within the set.
+				Pre-Condition:
+					Set is not empty
+					Set contains the element given
+
+			removeAny(): 
+				Function: remove and return some String from the set
+				Assumption: removeAny() will never be invoked on an empty set.
+				Pre-Condition:
+					Set is not empty
+				
+			isIn(String):  
+				Function: will accept a String as argument.
+				- Return a boolean value indicating whether the argument is contained within the set.
+				Pre-Condition:
+					none, if set is empty, return false
+
+//----------------------------------------------------------------------------------------------------------------
+			
+	3) Checking Wrappers
+		Pre-Face: One of the most common programming mistakes is to inadvertently violate a pre-condition.
+		Hence, pre-conditions are often checked, especially for methods that will be used by many developers. 
+		So, for example, you might check to ensure that the Stack is non-empty within the body of pop().
+	
+		An alternative to implementing the checks within the body of the checked class is to develop a
+		checking wrapper.This is simply a Decorator class that inserts pre-condition checks prior to 
+		invoking the underlying methods.
+		
+		Purpose: 
+			- You must apply the Decorator pattern to implement a checking wrapper that will work
+			with any implementation of BoundedSetOfString. 
+			- Your class must be named BoundedSetOfStringChecker
+			
+			BoundedSetOf-StringChecker:
+				- Must print a suitable error message to stdout whenever
+				pre-condition violation is detected.
+
+				-  You must explain to the TA why using a checking wrapper is better than 
+				implementing the checks directly within the body of BoundedSetOfStringImpl.
+			Explanation:
+				"It's a summation of all the checks we would have had to account for inside
+				one simple class. If a program is large and complicated, having a wrapper
+				could save headaches durring testing, and provided easier fixes when adjusting
+				the test parameters."
+			
+			Note: An interesting exam question might ask you to develop a checking wrapper 
+			      for a class that checks pre-conditions and post-conditions. 
+			      It might be a good idea to practice with this exercise at home.
+
+

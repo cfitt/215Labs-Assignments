@@ -1,0 +1,6 @@
+package cs.cpsc215.lab7;
+
+public abstract class BoundedSetOfStringChecker implements BoundedSetOfStrings {
+
+	
+}

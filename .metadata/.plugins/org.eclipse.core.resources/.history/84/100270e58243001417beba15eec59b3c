@@ -1,0 +1,26 @@
+package lab5.linkedlists;
+
+public class TestQueue {
+
+	public static void main(String[] args) {
+		
+		//Stack test 1
+		QueueImpl testqueue = new QueueImpl("uno", null);
+		testqueue.enqueue("dos");
+		testqueue.enqueue("tres");
+		testqueue.enqueue("cuatro");
+		testqueue.enqueue("cinco");
+		testqueue.enqueue("seis");
+		
+		for(int i=testqueue.getLength() +1;i>0;--i){
+			testqueue.toString();
+			System.out.println(testqueue.getLength()+"  :# of Strings in Queue\n");
+			System.out.println(testqueue.getFront() + " is the Head.");
+			testqueue.dequeue();
+		}
+		
+		//testqueue.clear();
+		
+	}
+	
+}

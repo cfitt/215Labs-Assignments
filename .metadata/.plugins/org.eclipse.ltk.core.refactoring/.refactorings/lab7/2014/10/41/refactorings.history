@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Encapsulate field &apos;cs.cpsc215.lab7.BoundedSetOfStringImpl.bString&apos; in &apos;cs.cpsc215.lab7.BoundedSetOfStringImpl&apos;&#x0A;- Original project: &apos;lab7&apos;&#x0A;- Original element: &apos;cs.cpsc215.lab7.BoundedSetOfStringImpl.bString&apos;&#x0A;- Getter method name: &apos;getbString&apos;&#x0A;- Setter method name: &apos;setbString&apos;&#x0A;- Field visibility: &apos;public&apos;&#x0A;- Use getter and setter methods in declaring type" comments="false" declaring="true" description="Encapsulate field &apos;bString&apos;" flags="589830" getter="getbString" id="org.eclipse.jdt.ui.self.encapsulate" input="/src&lt;cs.cpsc215.lab7{BoundedSetOfStringImpl.java[BoundedSetOfStringImpl^bString" insertion="5" setter="setbString" stamp="1412723232633" version="1.0" visibility="1"/>
+</session>

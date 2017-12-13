@@ -1,0 +1,93 @@
+package lab5.linkedlists;
+
+public class QueueImpl2 implements Queue {
+
+	protected LinkedNode head = null;
+	protected int length = 0;
+	
+	public QueueImpl2(String input, LinkedNode node) {
+		head = new LinkedNodeImpl(input, node);
+		if (input != null)
+			length++;
+	}
+	
+	public void enqueue(String stringData) {
+		if (length == 0 && head != null)
+			head.setString(stringData);
+		else {
+			LinkedNode newNode = new LinkedNodeImpl(stringData, head);
+			head = newNode;
+		}
+		length++;
+	}
+
+	public String dequeue() {
+		
+		String DQval = "";
+			if(length == 0){
+				System.out.println("This queue is empty");
+			}
+			if(length == 1){
+				DQval = head.getString();
+				head.setNextNode(null);
+				head.setString(null);
+				length--;
+			} else if(length>1){
+				LinkedNode current = head;
+				LinkedNode tail = null;
+				while (current.getNextNode() != null) {//Traverse to first in
+						tail = current;
+						current = current.getNextNode();
+				}
+				DQval = current.getString();
+				tail.setNextNode(null);
+				length--;
+			}
+		System.out.println(DQval+" has been DQed\n");
+		return DQval;
+	}
+
+	public String getFront() {
+		LinkedNode current = head;
+		while (current.getNextNode() != null)
+			current = current.getNextNode();
+		return current.getString();
+	}
+
+	public int getLength() {
+		return length;
+	}
+
+	public void clear() {
+		LinkedNode current = head;
+		while (current.getNextNode() != null) {
+			//tail = null;
+			current = current.getNextNode();
+			head = current;
+		}
+		length = 0;
+		head.setString(null);
+		head.setNextNode(null);
+		System.out.println("Queue Cleared\n");
+	}
+
+	public String toString() {
+		String Qval = "Queue (Head to Tail): \n";
+		LinkedNode current = head;
+		if (current == null)
+			Qval += "Current Node is empty \n";
+		else if (current.getString() == null)
+			Qval += "Data is empty \n";
+		else {
+			Qval += current.getString() + "\n";
+			while (current.getNextNode() != null) {
+				current = current.getNextNode();
+				if (current.getString() != null)
+					Qval += current.getString() + "\n";
+			}
+		}
+		System.out.println(Qval);
+		return Qval;
+	}
+}	
+
